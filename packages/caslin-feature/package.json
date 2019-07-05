@@ -18,6 +18,6 @@
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js",
-    "build": "bili --config ../../bili.config.js"
+    "build": "del -f dist && bili --config ../../bili.config.js"
   }
 }

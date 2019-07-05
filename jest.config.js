@@ -1,7 +1,7 @@
 module.exports = {
   rootDir: process.cwd(),
   testEnvironment: 'node',
-  preset: 'ts-jest/presets/js-with-ts',
+  preset: 'ts-jest',
   collectCoverage: true,
   coverageDirectory: './coverage',
 };
