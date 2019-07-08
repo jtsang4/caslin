@@ -19,9 +19,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "registry": "https://registry.yarnpkg.com"
-  },
   "scripts": {
     "test": "jest --config ../../jest.config.js",
     "build": "del -f dist && bili --config ../../bili.config.js",
