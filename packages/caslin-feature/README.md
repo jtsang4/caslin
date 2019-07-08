@@ -1,17 +1,17 @@
-# `caslin-feature`
+# `@caslin/feature`
 
 > TODO: description
 
 ## Usage
 
 ```
-const caslinFeature = require('caslin-feature');
+import { FeatureBuilder } from '@caslin/feature';
 
 // TODO: DEMONSTRATE API
 - [] Alias support
 - [] throwUnlessCan(), using reason
 - [] Support key word 'manage'
 - [] Priority is useless currently
-- [] Event listener
+- [x] Event listener
 - [] lint
 ```
