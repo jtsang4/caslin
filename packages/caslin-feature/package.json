@@ -19,6 +19,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest --config ../../jest.config.js",
     "build": "del -f dist && bili --config ../../bili.config.js",
