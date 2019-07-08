@@ -1,0 +1,46 @@
+{
+  "name": "@caslin/react",
+  "version": "0.0.1",
+  "description": "A util for making using Caslin with React easier.",
+  "keywords": [
+    "caslin",
+    "react"
+  ],
+  "author": "wtzeng1 <wentao_zeng1@163.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.js",
+  "es2015": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "src/__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "jest --config ../../jest.config.js",
+    "build": "del -f dist && bili --config ../../bili.config.js"
+  },
+  "devDependencies": {
+    "@types/prop-types": "^15.7.1",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0"
+  },
+  "peerDependencies": {
+    "@caslin/feature": "^0.0.1"
+  },
+  "dependencies": {
+    "@caslin/feature": "^0.0.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
