@@ -7,7 +7,6 @@
     "feature"
   ],
   "author": "James Tsang <wentao_zeng1@163.com>",
-  "homepage": "",
   "license": "MIT",
   "main": "dist/index.umd.js",
   "module": "dist/index.js",
@@ -25,7 +24,8 @@
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js",
-    "build": "del -f dist && bili --config ../../bili.config.js"
+    "build": "del -f dist && bili --config ../../bili.config.js",
+    "prepublish": "yarn test && NODE_ENV=productino && yarn build"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15"
