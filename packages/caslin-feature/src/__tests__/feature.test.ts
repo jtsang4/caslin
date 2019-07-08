@@ -186,4 +186,66 @@ describe('Feature', () => {
       expect(feature.env.notIn(['test', 'bar'])).toBe(false);
     });
   });
+
+  describe('Events', () => {
+    it('should call "updated" handler after update feature', function () {
+      const rules = [
+        { actions: ['read'], subject: 'Post', env: 'all' },
+      ];
+      const feature = new Feature(rules);
+      const spy = jest.fn();
+      feature.on('updated', spy);
+      feature.update([]);
+      expect(spy).toBeCalledTimes(1);
+    });
+
+    it('should call every listener when emit event', function () {
+      const rules = [
+        { actions: ['read'], subject: 'Post', env: 'all' },
+      ];
+      const feature = new Feature(rules);
+      const spy1 = jest.fn();
+      const spy2 = jest.fn();
+      feature.on('updated', spy1);
+      feature.on('updated', spy2);
+      feature.update([]);
+      expect(spy1).toBeCalledTimes(1);
+      expect(spy2).toBeCalledTimes(1);
+    });
+
+    it('should call listener by using on() when emit event', function () {
+      const rules = [
+        { actions: ['read'], subject: 'Post', env: 'all' },
+      ];
+      const feature = new Feature(rules);
+      const spy = jest.fn();
+      feature.on('test', spy);
+      feature.emit('test', 'payload');
+      expect(spy).toBeCalledTimes(1);
+      expect(spy).toBeCalledWith('payload');
+    });
+
+    it('should NOT call listener by using on() after unsubscription even if emit event', function () {
+      const rules = [
+        { actions: ['read'], subject: 'Post', env: 'all' },
+      ];
+      const feature = new Feature(rules);
+      const spy = jest.fn();
+      const unsubscribe = feature.on('test', spy);
+      unsubscribe();
+      feature.emit('test', 'payload');
+      expect(spy).not.toBeCalled();
+    });
+
+    it('should only unsubscribe once even if call several times unsubscribe', function () {
+      const rules = [
+        { actions: ['read'], subject: 'Post', env: 'all' },
+      ];
+      const feature = new Feature(rules);
+      const spy = jest.fn();
+      const unsubscribe = feature.on('test', spy);
+      expect(unsubscribe()).toBe(true);
+      expect(unsubscribe()).toBe(false);
+    });
+  });
 });

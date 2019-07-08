@@ -14,6 +14,7 @@ export interface PrivateField {
     }
   };
   resultRuleCache: { [key: string]: Rule[]; };
+  events: { [event: string]: Function[]; };
 }
 
 export default class Feature {
@@ -25,9 +26,10 @@ export default class Feature {
       currentEnvironment: '',
       indexedRules: Object.create(null),
       resultRuleCache: Object.create(null),
+      events: Object.create(null),
     };
 
-    this._update(rules || []);
+    this.update(rules || []);
   }
 
   get rules() {
@@ -53,11 +55,6 @@ export default class Feature {
 
   private _in(envs: string[]): boolean {
     return envs.includes(this[PRIVATE_FIELD].currentEnvironment);
-  }
-
-  private _update(rules: Rule[]) {
-    this[PRIVATE_FIELD].originalRules = Object.freeze(rules.slice(0));
-    this[PRIVATE_FIELD].indexedRules = this._buildIndexedRules(rules);
   }
 
   private _buildIndexedRules(rules: Rule[]): PrivateField['indexedRules'] {
@@ -128,6 +125,13 @@ export default class Feature {
     }
   }
 
+  update(rules: Rule[]) {
+    this[PRIVATE_FIELD].originalRules = Object.freeze(rules.slice(0));
+    this[PRIVATE_FIELD].indexedRules = this._buildIndexedRules(rules);
+    this[PRIVATE_FIELD].resultRuleCache = Object.create(null);
+    this.emit('updated', this);
+  }
+
   setEnv(env: string) {
     this[PRIVATE_FIELD].currentEnvironment = env;
     return this;
@@ -161,5 +165,33 @@ export default class Feature {
       return !(this._can(wrappedActions, subject, env) || this._can(wrappedActions, subject, ALL_ENV));
     };
     return { can, cannot };
+  }
+
+  on(event: string, handler: Function) {
+    const { events } = this[PRIVATE_FIELD];
+    if (!events[event]) {
+      events[event] = [];
+    }
+    events[event].push(handler);
+    let isAttached = true;
+
+    return () => {
+      if (isAttached) {
+        const index = events[event].indexOf(handler);
+        events[event].splice(index, 1);
+        isAttached = false;
+        return true;
+      }
+      return false;
+    };
+  }
+
+  emit(event: string, payload: any) {
+    const { events } = this[PRIVATE_FIELD];
+    const handlers = events[event];
+
+    if (handlers) {
+      handlers.slice(0).forEach(handler => handler(payload));
+    }
   }
 }
