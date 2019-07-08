@@ -19,5 +19,8 @@
   "scripts": {
     "test": "jest --config ../../jest.config.js",
     "build": "del -f dist && bili --config ../../bili.config.js"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15"
   }
 }

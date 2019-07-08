@@ -1,0 +1,165 @@
+import { Rule } from './builder';
+import { ALL_ENV, PRIVATE_FIELD } from './constants';
+
+export interface PrivateField {
+  originalRules: Rule[] | Readonly<Rule[]>;
+  currentEnvironment: string;
+  indexedRules: {
+    [env: string]: {
+      [subject: string]: {
+        [action: string]: {
+          [order: number]: Rule;
+        };
+      };
+    }
+  };
+  resultRuleCache: { [key: string]: Rule[]; };
+}
+
+export default class Feature {
+  private [PRIVATE_FIELD]: PrivateField;
+
+  constructor(rules: Rule[]) {
+    this[PRIVATE_FIELD] = {
+      originalRules: rules || [],
+      currentEnvironment: '',
+      indexedRules: Object.create(null),
+      resultRuleCache: Object.create(null),
+    };
+
+    this._update(rules || []);
+  }
+
+  get rules() {
+    return this[PRIVATE_FIELD].originalRules;
+  }
+
+  get env() {
+    return {
+      is: this._is.bind(this),
+      not: (env: string) => {
+        return !this._is.call(this, env);
+      },
+      in: this._in.bind(this),
+      notIn: (envs: string[]) => {
+        return !this._in.call(this, envs);
+      },
+    };
+  }
+
+  private _is(env: string): boolean {
+    return this[PRIVATE_FIELD].currentEnvironment === env;
+  }
+
+  private _in(envs: string[]): boolean {
+    return envs.includes(this[PRIVATE_FIELD].currentEnvironment);
+  }
+
+  private _update(rules: Rule[]) {
+    this[PRIVATE_FIELD].originalRules = Object.freeze(rules.slice(0));
+    this[PRIVATE_FIELD].indexedRules = this._buildIndexedRules(rules);
+  }
+
+  private _buildIndexedRules(rules: Rule[]): PrivateField['indexedRules'] {
+    const indexedRules: PrivateField['indexedRules'] = Object.create(null);
+
+    let isAllInverted: boolean = true;
+
+    for (let i = 0; i < rules.length; i++) {
+      const rule = rules[i];
+      const { actions, subject, env, inverted } = rule;
+      const priority: number = i;
+
+      isAllInverted = !!(isAllInverted && inverted);
+
+      for (let action of actions) {
+        indexedRules[env] = indexedRules[env] || Object.create(null);
+        indexedRules[env][subject] = indexedRules[env][subject] || Object.create(null);
+        indexedRules[env][subject][action] = indexedRules[env][subject][action] || Object.create(null);
+        indexedRules[env][subject][action][priority] = rule;
+      }
+    }
+
+    if (process.env.NODE_ENV !== 'production' && isAllInverted && rules.length) {
+      console.warn('[Caslin]: Feature contains only inverted rules. That means user will not be able to do any actions.')
+    }
+
+    return indexedRules;
+  }
+
+  private _cachedRulesFor(action: string, subject: string, env: string): Rule[] {
+    const { indexedRules } = this[PRIVATE_FIELD];
+    const rules: { [key: number]: Rule } = indexedRules[env][subject][action];
+    return Object.assign([], rules).filter(rule => !!rule);
+  }
+
+  private _rulesFor(actions: string[], subject: string, env: string): Rule[] {
+    let resultRule: Rule[] = [];
+    const { indexedRules, resultRuleCache } = this[PRIVATE_FIELD];
+    if (indexedRules[env] && indexedRules[env][subject]) {
+      for (let action of actions) {
+        if (indexedRules[env][subject][action]) {
+          const key: string = `${env}__${subject}__${action}`;
+          if (!resultRuleCache[key]) {
+            resultRuleCache[key] = this._cachedRulesFor(action, subject, env);
+          }
+          resultRule = resultRule.concat(resultRuleCache[key]);
+        } else {
+          resultRule = [];
+          break;
+        }
+      }
+    } else {
+      resultRule = [];
+    }
+
+    return resultRule;
+  }
+
+  private _can(actions: string[], subject: string, env: string) {
+    const relevantRules: Rule[] = this._rulesFor(actions, subject, env);
+    return !!relevantRules && !!relevantRules.length && relevantRules.every(rule => !rule.inverted);
+  }
+
+  private _checkActions(actions: string | string[]) {
+    const wrappedActions = ([] as string[]).concat(actions);
+    if (wrappedActions.some(action => typeof action !== 'string' || !action)) {
+      throw new TypeError('Caslin: expect every action passed in should be a non-empty string');
+    }
+  }
+
+  setEnv(env: string) {
+    this[PRIVATE_FIELD].currentEnvironment = env;
+    return this;
+  }
+
+  resetEnv() {
+    this.setEnv('');
+    return this;
+  }
+
+  can(actions: string | string[], subject: string) {
+    const { currentEnvironment } = this[PRIVATE_FIELD];
+    const wrappedActions = ([] as string[]).concat(actions);
+    this._checkActions(wrappedActions);
+    return this._can(wrappedActions, subject, currentEnvironment || ALL_ENV);
+  }
+
+  cannot(actions: string | string[], subject: string) {
+    return !this.can(actions, subject);
+  }
+
+  at(env: string) {
+    const can = (actions: string | string[], subject: string) => {
+      const wrappedActions = ([] as string[]).concat(actions);
+      this._checkActions(wrappedActions);
+      return this._can(wrappedActions, subject, env) || this._can(wrappedActions, subject, ALL_ENV);
+    };
+    const cannot = (actions: string | string[], subject: string) => {
+      const wrappedActions = ([] as string[]).concat(actions);
+      this._checkActions(wrappedActions);
+      return !(this._can(wrappedActions, subject, env) || this._can(wrappedActions, subject, ALL_ENV));
+    };
+    return { can, cannot };
+  }
+}
