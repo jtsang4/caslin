@@ -13,4 +13,5 @@ const caslinFeature = require('caslin-feature');
 - [] Support key word 'manage'
 - [] Priority is useless currently
 - [] Event listener
+- [] lint
 ```
