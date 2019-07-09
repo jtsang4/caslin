@@ -6,7 +6,7 @@
 >
 > **在此特别感谢 [Casl](https://github.com/stalniy/casl)，没有 Casl 就没有现在的 Caslin。**
 
-[English](https://github.com/wtzeng1/caslin) | 中文
+[English](https://github.com/wtzeng1/caslin/tree/master/packages/caslin-feature) | 中文
 
 ## 框架特点
 

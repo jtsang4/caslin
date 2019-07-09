@@ -6,7 +6,7 @@ An application feature management JS framework to support multi-environments, mu
 >
 > **Special thanks to [Casl](https://github.com/stalniy/casl), without Casl there is no current Caslin.**
 
-English | [中文](https://github.com/wtzeng1/caslin/blob/master/README-zh-cn.md)
+English | [中文](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md)
 
 ## Features of Caslin
 
