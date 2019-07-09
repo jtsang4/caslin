@@ -26,13 +26,13 @@ interface Definer {
   (can: InstanceType<typeof FeatureBuilder>['can'], cannot: InstanceType<typeof FeatureBuilder>['cannot'], at: InstanceType<typeof FeatureBuilder>['at']): Promise<any> | void;
 }
 export class FeatureBuilder {
-  static define(definer: Definer) {
+  static define<D extends Definer>(definer: D): ReturnType<D> extends Promise<any> ? Promise<Feature> : Feature {
     const builder = new this();
     const result = definer(builder.can.bind(builder), builder.cannot.bind(builder), builder.at.bind(builder));
 
     const featureBuilder = () => new Feature(builder._rules);
 
-    return result && typeof result.then === 'function' ? result.then(featureBuilder) : featureBuilder();
+    return result && typeof result.then === 'function' ? result.then(featureBuilder) : featureBuilder() as any;
   }
 
   constructor() {

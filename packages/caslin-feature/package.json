@@ -7,6 +7,9 @@
     "feature"
   ],
   "author": "James Tsang <wentao_zeng1@163.com>",
+  "repository": {
+    "url": "https://github.com/wtzeng1/caslin"
+  },
   "license": "MIT",
   "main": "dist/index.umd.js",
   "module": "dist/index.js",
