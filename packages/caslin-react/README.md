@@ -45,7 +45,7 @@ import feature from './feature';
 
 ### 2. &lt;Env> component
 
-In general case, when this component is used, the [feat.setEnv()](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature#feature) is called and the current default environment is set.
+In general case, when this component is used, the [feature.setEnv()](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature#feature) is called and the current default environment is set.
 
 ```jsx
 import { Env } from '@caslin/react';

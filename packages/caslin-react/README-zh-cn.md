@@ -45,7 +45,7 @@ import feature from './feature';
 
 ### 2. &lt;Env> 组件
 
-一般使用这个组件的时候已经提取调用 [feat.setEnv()](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md#feature) 设置好了当前的默认环境。
+一般使用这个组件的时候已经提取调用 [feature.setEnv()](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md#feature) 设置好了当前的默认环境。
 
 ```jsx
 import { Env } from '@caslin/react';
