@@ -1,7 +1,7 @@
 {
   "name": "@caslin/feature",
   "version": "0.0.1",
-  "description": "A feature management JavaScript framework. Inspired by casl.",
+  "description": "An application feature management JS framework to support multi-environments, multi-roles, multi-scenarios",
   "keywords": [
     "caslin",
     "feature"
