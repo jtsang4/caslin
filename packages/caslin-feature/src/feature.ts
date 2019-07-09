@@ -137,6 +137,7 @@ export default class Feature {
 
   setEnv(env: string) {
     this[PRIVATE_FIELD].currentEnvironment = env;
+    this.emit('updated', this);
     return this;
   }
 
