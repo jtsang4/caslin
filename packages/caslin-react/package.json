@@ -24,10 +24,11 @@
     "access": "public"
   },
   "scripts": {
-    "test": "jest --config ../../jest.config.js",
+    "test": "jest --config ./tools/jest.config.js",
     "build": "del -f dist && bili --config ../../bili.config.js"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.1",
     "@types/prop-types": "^15.7.1",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
