@@ -21,7 +21,7 @@
 
 * 源码使用 TypeScript
 * 引入环境的概念，以解决 [Casl](https://github.com/stalniy/casl) 未强调解决的"相同功能，不同环境"的问题
-* 增加环境相关 API 以及 React 组件
+* 增加环境相关 API 以及 [React 高阶组件](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-react/README-zh-cn.md)
 
 ## 安装
 

@@ -6,7 +6,7 @@ An application feature management JS framework to support multi-environments, mu
 >
 > **Special thanks to [Casl](https://github.com/stalniy/casl), without [Casl](https://github.com/stalniy/casl) there is no current Caslin.**
 
-English | [中文](/wtzeng1/caslin/blob/master/README-zh-cn.md)
+English | [中文](https://github.com/wtzeng1/caslin/blob/master/README-zh-cn.md)
 
 ## Features of Caslin
 
@@ -20,7 +20,7 @@ English | [中文](/wtzeng1/caslin/blob/master/README-zh-cn.md)
 
 * Source code written by TypeScript
 * Introduce the concept of the "environment" to solve the problem of "same function, different environment" that [Casl](https://github.com/stalniy/casl) does not focus
-* Add environment-related APIs and React HOC components
+* Add environment-related APIs and [React HOC components](https://github.com/wtzeng1/caslin/tree/master/packages/caslin-react)
 
 ## Installation
 
@@ -81,7 +81,7 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 ## API
 
-For more details and APIs: [API DOC](/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md)
+For more details and APIs: [API DOC](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md)
 
 ### FeatureBuilder
 
@@ -133,4 +133,4 @@ Verify that the current default environment is included in env1, env2 and return
 
 ## License
 
-[MIT License](/wtzeng1/caslin/blob/master/LICENSE)
+[MIT License](https://github.com/wtzeng1/caslin/blob/master/LICENSE)
