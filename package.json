@@ -1,7 +1,7 @@
 {
   "name": "caslin",
   "version": "0.0.1",
-  "description": "A feature management JavaScript framework.",
+  "description": "An application feature management JS framework to support multi-environments, multi-roles, multi-scenarios",
   "main": "index.js",
   "author": "tsang",
   "license": "MIT",
