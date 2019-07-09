@@ -4,7 +4,7 @@ An application feature management JS framework to support multi-environments, mu
 
 > This framework is transformed from [Casl](https://github.com/stalniy/casl) and is motivated by the actual needs (multi-environments feature management). It is used to manage the features and abilities of your application in multiple environments. The application features can be tailored and joined according to the environments and roles.
 >
-> **Special thanks to [Casl](https://github.com/stalniy/casl), without [Casl](https://github.com/stalniy/casl) there is no current Caslin.**
+> **Special thanks to [Casl](https://github.com/stalniy/casl), without Casl there is no current Caslin.**
 
 English | [中文](https://github.com/wtzeng1/caslin/blob/master/README-zh-cn.md)
 
@@ -14,12 +14,12 @@ English | [中文](https://github.com/wtzeng1/caslin/blob/master/README-zh-cn.md
 * Centralized feature management for easy viewing, definition, and changes
 * Feature definition meets the free combination of functions, roles, and environments
 * Feature definition and feature implementation decoupling, flexible change of feature definition or feature implementation
-* Transformed from [Casl](https://github.com/stalniy/casl), the underlying API logic is simple and clear, while providing a friendly, easy-to-use React utility
+* Transformed from Casl, the underlying API logic is simple and clear, while providing a friendly, easy-to-use React utility
 
-## Difference between [Casl](https://github.com/stalniy/casl)
+## Difference between Casl
 
 * Source code written by TypeScript
-* Introduce the concept of the "environment" to solve the problem of "same function, different environment" that [Casl](https://github.com/stalniy/casl) does not focus
+* Introduce the concept of the "environment" to solve the problem of "same function, different environment" that Casl does not focus
 * Add environment-related APIs and [React HOC components](https://github.com/wtzeng1/caslin/tree/master/packages/caslin-react)
 
 ## Installation
@@ -81,7 +81,7 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 ## API
 
-For more details and APIs: [API DOC](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md)
+For more details and APIs: [API DOC](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature)
 
 ### FeatureBuilder
 

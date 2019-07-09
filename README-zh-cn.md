@@ -4,7 +4,7 @@
 
 > 本框架基于 [Casl](https://github.com/stalniy/casl) 改造，并结合实际需求（多环境管理）而产生灵感。用于在多环境下管理系统的特性和能力，可根据环境、角色的不同对系统特性进行裁剪和接合。
 >
-> **在此特别感谢 [Casl](https://github.com/stalniy/casl)，没有 [Casl](https://github.com/stalniy/casl) 就没有现在的 Caslin。**
+> **在此特别感谢 [Casl](https://github.com/stalniy/casl)，没有 Casl 就没有现在的 Caslin。**
 
 [English](https://github.com/wtzeng1/caslin) | 中文
 
@@ -14,13 +14,12 @@
 * 集中式特性管理，便于查看、定义、更改特性
 * 特性定义满足功能、角色、环境自由组合
 * 特性定义与特性实现解耦，可灵活变更特性定义或者特性实现
-* 特性定义与特性实现可通过共同索引相关联，得到更清晰的逻辑
-* 基于 [Casl](https://github.com/stalniy/casl) 改造，底层 API 逻辑简单清晰，同时提供友好、易用的 React 上层封装 API
+* 基于 Casl 改造，底层 API 逻辑简单清晰，同时提供友好、易用的 React 上层封装 API
 
-## 对比 [Casl](https://github.com/stalniy/casl) 的改造点
+## 与 Casl 的不同点
 
 * 源码使用 TypeScript
-* 引入环境的概念，以解决 [Casl](https://github.com/stalniy/casl) 未强调解决的"相同功能，不同环境"的问题
+* 引入环境的概念，以解决 Casl 未强调解决的"相同功能，不同环境"的问题
 * 增加环境相关 API 以及 [React 高阶组件](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-react/README-zh-cn.md)
 
 ## 安装
