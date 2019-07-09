@@ -341,9 +341,12 @@ describe('Can', () => {
           <div>test</div>
         </Can>
       ));
+      const errorLog = global.console.error;
+      global.console.error = jest.fn();
       expect(() => {
         wrapper.setProps({ feature: null });
       }).toThrow();
+      global.console.error = errorLog;
     });
 
     it('should trigger unsubscribe() when componentWillUnmount', function () {

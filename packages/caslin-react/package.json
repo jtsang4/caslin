@@ -33,10 +33,13 @@
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0"
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jsdom": "^15.1.1"
   },
   "peerDependencies": {
-    "@caslin/feature": "^0.0.1"
+    "@caslin/feature": "^0.0.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "dependencies": {
     "@caslin/feature": "^0.0.1",

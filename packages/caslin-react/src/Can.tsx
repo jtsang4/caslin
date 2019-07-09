@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Feature } from '@caslin/feature';
 
-interface RenderChildren {
+export interface RenderChildren {
   (): React.ReactNode;
   (can: boolean): React.ReactNode;
   (can: boolean, feature: Feature): React.ReactNode;
 }
 
-interface Props {
+export interface Props {
   action: string | string[];
   subject: string;
   feature: Feature;
