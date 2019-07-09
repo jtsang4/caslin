@@ -6,7 +6,7 @@
 >
 > **在此特别感谢 [Casl](https://github.com/stalniy/casl)，没有 [Casl](https://github.com/stalniy/casl) 就没有现在的 Caslin。**
 
-[English](/wtzeng1/caslin) | 中文
+[English](https://github.com/wtzeng1/caslin) | 中文
 
 ## 框架特点
 
@@ -82,7 +82,7 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 ## API
 
-更加详细的 API 请见 [API 文档](/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md)
+更加详细的 API 请见 [API 文档](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md)
 
 ### FeatureBuilder
 
@@ -134,4 +134,4 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 ## 许可协议
 
-[MIT License](/wtzeng1/caslin/blob/master/LICENSE)
+[MIT License](https://github.com/wtzeng1/caslin/blob/master/LICENSE)
