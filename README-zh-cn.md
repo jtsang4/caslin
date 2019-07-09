@@ -1,12 +1,12 @@
 # Caslin
 
-一个用于支持多应用环境的特性管理的 JS 框架
+一个用于支持"多环境、多角色、多场景"的应用特性管理 JS 框架
 
 > 本框架基于 [Casl](https://github.com/stalniy/casl) 改造，并结合实际需求（多环境管理）而产生灵感。用于在多环境下管理系统的特性和能力，可根据环境、角色的不同对系统特性进行裁剪和接合。
 >
 > **在此特别感谢 [Casl](https://github.com/stalniy/casl)，没有 [Casl](https://github.com/stalniy/casl) 就没有现在的 Caslin。**
 
-[English](https://github.com/wtzeng1/caslin) | 中文
+[English](/wtzeng1/caslin) | 中文
 
 ## 框架特点
 
@@ -22,7 +22,12 @@
 * 源码使用 TypeScript
 * 引入环境的概念，以解决 [Casl](https://github.com/stalniy/casl) 未强调解决的"相同功能，不同环境"的问题
 * 增加环境相关 API 以及 React 组件
-* 附带推荐的使用方式，开箱即用
+
+## 安装
+
+```shell
+npm install @caslin/feature --save
+```
 
 ## 基本使用
 
@@ -51,6 +56,7 @@ const feature = FeatureBuilder.define((can, cannot, at) => {
 feature.at('featEnv1').can('create', 'Article'); // true
 feature.at('featEnv2').cannot('delete', 'Article'); // true
 feature.at('featEnv1').cannot('delete', 'Article'); // true
+feature.at('featEnv2').cannot(['delete', 'create'], 'Article'); // true
 feature.at('featEnv2').can('read', 'Article'); // true, because "all" env could "read"
 feature.can('read', 'Comment'); // true. Alias of `feature.at('all').can('read', 'Comment');`
 ```
@@ -76,7 +82,7 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 ## API
 
-更加详细的 API 请见 [API 文档](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md)
+更加详细的 API 请见 [API 文档](/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md)
 
 ### FeatureBuilder
 
@@ -92,19 +98,19 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 ### Feature
 
-假定有一个 `feature` 为 Feature 的实例。
+假定有一个 `feature` 为 `Feature` 的实例。
 
 * feature.at('env').can('action', 'subject')
 
-表示在某环境(env)下对某主体(subject)是否有操作的能力(action)，有则返回 `true`，否则返回 `false`。
+表示在某环境(env)下对某主体(subject)是否有操作(action/actions)的能力，**有**则返回 `true`，否则返回 `false`。
 
 * feature.at('env').cannot('action', 'subject')
 
-表示在某环境(env)下对某主体(subject)是否有操作的能力(action)，没有则返回 `true`，否则返回 `false`。
+表示在某环境(env)下对某主体(subject)是否有操作(action/actions)的能力，**没有**则返回 `true`，否则返回 `false`。
 
 * feature.setEnv('env')
 
-设置当前的默认环境(env)。
+设置当前的默认环境。
 
 * feature.resetEnv()
 
@@ -112,16 +118,20 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 * feature.env.is('env')
 
-检验当前的默认环境是否是 env，如果是则返回 `true`，否则返回 `false`。
+检验当前的默认环境是否是 "env"，如果**是**则返回 `true`，否则返回 `false`。
 
 * feature.env.not('env')
 
-检验当前的默认环境是否是 env，如果不是则返回 `true`，否则返回 `false`。
+检验当前的默认环境是否是 "env"，如果**不是**则返回 `true`，否则返回 `false`。
 
 * feature.env.in(['env1', 'env2'])
 
-检验当前的默认环境是否包含于 env1, env2 中，如果包含则返回 `true`，否则返回 `false`。
+检验当前的默认环境是否包含于 env1, env2 中，如果**包含**则返回 `true`，否则返回 `false`。
 
 * feature.env.notIn(['env1', 'env2'])
 
-检验当前的默认环境是否是包含于 env1, env2 中，如果不包含则返回 `true`，否则返回 `false`。
+检验当前的默认环境是否是包含于 env1, env2 中，如果**不包含**则返回 `true`，否则返回 `false`。
+
+## 许可协议
+
+[MIT License](/wtzeng1/caslin/blob/master/LICENSE)
