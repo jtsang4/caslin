@@ -5,21 +5,21 @@ import Can from '../Can';
 
 let feature: Feature;
 
-beforeAll(() => {
-  feature = FeatureBuilder.define((can, cannot, at) => {
-    at('foo').can('read', 'Post');
-    at('foo').can('update', 'Post');
-    at('foo').cannot('create', 'Post');
-    at('foo').cannot('delete', 'Post');
-
-    can('read', 'Post');
-    can('create', 'Post');
-    cannot('update', 'Post');
-    cannot('delete', 'Post');
-  });
-});
-
 describe('Can', () => {
+  beforeAll(() => {
+    feature = FeatureBuilder.define((can, cannot, at) => {
+      at('foo').can('read', 'Post');
+      at('foo').can('update', 'Post');
+      at('foo').cannot('create', 'Post');
+      at('foo').cannot('delete', 'Post');
+
+      can('read', 'Post');
+      can('create', 'Post');
+      cannot('update', 'Post');
+      cannot('delete', 'Post');
+    });
+  });
+
   describe('Basic Usage', () => {
     it('should render element children when check allowed feature with Can', function () {
       const wrapper = shallow((
@@ -190,7 +190,7 @@ describe('Can', () => {
     it('should conditionally render function children when check allowed feature with passThrough prop', function () {
       const wrapper = shallow((
         <Can passThrough env="foo" action="read" subject="Post" feature={feature}>
-          {(can: boolean) => <div>{can ? 'can' : 'cannot'}</div>}
+          {(allowed: boolean) => <div>{allowed ? 'can' : 'cannot'}</div>}
         </Can>
       ));
       expect(wrapper.contains(<div>can</div>)).toBe(true);
@@ -199,7 +199,7 @@ describe('Can', () => {
     it('should conditionally render function children when check forbidden feature with passThrough prop', function () {
       const wrapper = shallow((
         <Can passThrough env="foo" action="create" subject="Post" feature={feature}>
-          {(can: boolean) => <div>{can ? 'can' : 'cannot'}</div>}
+          {(allowed: boolean) => <div>{allowed ? 'can' : 'cannot'}</div>}
         </Can>
       ));
       expect(wrapper.contains(<div>cannot</div>)).toBe(true);
@@ -208,7 +208,7 @@ describe('Can', () => {
     it('should conditionally render function children when check forbidden feature with passThrough and not prop', function () {
       const wrapper = shallow((
         <Can not passThrough env="foo" action="create" subject="Post" feature={feature}>
-          {(can: boolean) => <div>{can ? 'can' : 'cannot'}</div>}
+          {(allowed: boolean) => <div>{allowed ? 'can' : 'cannot'}</div>}
         </Can>
       ));
       expect(wrapper.contains(<div>can</div>)).toBe(true);
@@ -365,8 +365,7 @@ describe('Can', () => {
     });
   });
 
-});
-
-afterAll(() => {
-  feature = null!;
+  afterAll(() => {
+    feature = null!;
+  });
 });
