@@ -12,7 +12,7 @@ import {
 
 let feature: Feature;
 
-describe.only('Factory', () => {
+describe('Factory', () => {
   beforeAll(() => {
     feature = FeatureBuilder.define((can, cannot, at) => {
       at('foo').can('read', 'Post');

@@ -223,6 +223,28 @@ describe('Feature', () => {
       expect(spy).toBeCalledTimes(1);
     });
 
+    it('should call "updated" handler after setEnv()', function () {
+      const rules = [
+        { actions: ['read'], subject: 'Post', env: 'all' },
+      ];
+      const feature = new Feature(rules);
+      const spy = jest.fn();
+      feature.on('updated', spy);
+      feature.setEnv('foo');
+      expect(spy).toBeCalledTimes(1);
+    });
+
+    it('should call "updated" handler after resetEnv()', function () {
+      const rules = [
+        { actions: ['read'], subject: 'Post', env: 'all' },
+      ];
+      const feature = new Feature(rules);
+      const spy = jest.fn();
+      feature.on('updated', spy);
+      feature.resetEnv();
+      expect(spy).toBeCalledTimes(1);
+    });
+
     it('should call every listener when emit event', function () {
       const rules = [
         { actions: ['read'], subject: 'Post', env: 'all' },
