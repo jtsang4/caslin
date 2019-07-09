@@ -154,6 +154,30 @@ describe('Feature', () => {
       feature.setEnv('test');
       expect(feature.at('foo').can(['read', 'delete'], 'Post')).toBe(false);
     });
+
+    it('should get false if feature is allowed at all env but forbidden at specific env ', function () {
+      const rules = [
+        { actions: ['read'], subject: 'Post', env: 'test', inverted: true },
+        { actions: ['delete'], subject: 'Post', env: 'test', inverted: true },
+        { actions: ['read'], subject: 'Post', env: 'all' },
+        { actions: ['delete'], subject: 'Post', env: 'all' },
+      ];
+
+      const feature = new Feature(rules);
+      expect(feature.at('test').can(['read', 'delete'], 'Post')).toBe(false);
+    });
+
+    it('should get true if feature is forbidden at all env but allowed at specific env ', function () {
+      const rules = [
+        { actions: ['read'], subject: 'Post', env: 'all', inverted: true },
+        { actions: ['delete'], subject: 'Post', env: 'all', inverted: true },
+        { actions: ['read'], subject: 'Post', env: 'test' },
+        { actions: ['delete'], subject: 'Post', env: 'test' },
+      ];
+
+      const feature = new Feature(rules);
+      expect(feature.at('test').can(['read', 'delete'], 'Post')).toBe(true);
+    });
   });
 
   describe('env', () => {
