@@ -115,7 +115,10 @@ export default class Feature {
 
   private _can(actions: string[], subject: string, env: string) {
     const relevantRules: Rule[] = this._rulesFor(actions, subject, env);
-    return !!relevantRules && !!relevantRules.length && relevantRules.every(rule => !rule.inverted);
+    return {
+      allowed: !!relevantRules && !!relevantRules.length && relevantRules.every(rule => !rule.inverted),
+      forbidden: !!relevantRules && !!relevantRules.length && relevantRules.some(rule => rule.inverted),
+    }
   }
 
   private _checkActions(actions: string | string[]) {
@@ -146,7 +149,7 @@ export default class Feature {
     const { currentEnvironment } = this[PRIVATE_FIELD];
     const wrappedActions = ([] as string[]).concat(actions);
     this._checkActions(wrappedActions);
-    return this._can(wrappedActions, subject, currentEnvironment || ALL_ENV);
+    return this._can(wrappedActions, subject, currentEnvironment || ALL_ENV).allowed;
   }
 
   cannot(actions: string | string[], subject: string) {
@@ -157,12 +160,11 @@ export default class Feature {
     const can = (actions: string | string[], subject: string) => {
       const wrappedActions = ([] as string[]).concat(actions);
       this._checkActions(wrappedActions);
-      return this._can(wrappedActions, subject, env) || this._can(wrappedActions, subject, ALL_ENV);
+      const result = this._can(wrappedActions, subject, env);
+      return result.allowed || (!result.forbidden && this._can(wrappedActions, subject, ALL_ENV).allowed);
     };
     const cannot = (actions: string | string[], subject: string) => {
-      const wrappedActions = ([] as string[]).concat(actions);
-      this._checkActions(wrappedActions);
-      return !(this._can(wrappedActions, subject, env) || this._can(wrappedActions, subject, ALL_ENV));
+      return !can(actions, subject);
     };
     return { can, cannot };
   }
