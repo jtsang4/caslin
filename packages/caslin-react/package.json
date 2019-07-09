@@ -7,18 +7,20 @@
     "react"
   ],
   "author": "wtzeng1 <wentao_zeng1@163.com>",
-  "homepage": "",
+  "repository": {
+    "url": "https://github.com/wtzeng1/caslin/tree/master/packages/caslin-react"
+  },
   "license": "MIT",
   "main": "dist/index.umd.js",
   "module": "dist/index.js",
   "es2015": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
   "directories": {
-    "lib": "lib",
+    "lib": "dist",
     "test": "src/__tests__"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
