@@ -1,4 +1,4 @@
-# Caslin
+# Caslin Feature
 
 An application feature management JS framework to support multi-environments, multi-roles, multi-scenarios
 
