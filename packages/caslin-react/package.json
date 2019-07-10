@@ -11,9 +11,8 @@
     "url": "https://github.com/wtzeng1/caslin/tree/master/packages/caslin-react"
   },
   "license": "MIT",
-  "main": "dist/index.umd.js",
-  "module": "dist/index.js",
-  "es2015": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
   "directories": {
     "lib": "dist",

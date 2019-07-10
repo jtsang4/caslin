@@ -4,7 +4,7 @@ module.exports = {
   input: './src/index.ts',
   output: {
     dir: './dist',
-    format: ['cjs', 'esm', 'umd'],
+    format: ['cjs', 'esm'],
     minify: true,
     moduleName: 'caslin'
   },
