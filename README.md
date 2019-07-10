@@ -131,6 +131,12 @@ Check that the current default environment is included in env1, env2 and return 
 
 Verify that the current default environment is included in env1, env2 and return `true` if **it is not**, otherwise return `false`.
 
+## UI integration
+
+Just like Casl, Caslin is also a pure JS library with no external dependencies, and can be used in both Node and browser environments. In order to be better used in different environments, there are some environment-related integrated tool libraries available.
+
+* [@caslin/react](https://github.com/wtzeng1/caslin/tree/master/packages/caslin-react) for [React](https://reactjs.org/)
+
 ## License
 
 [MIT License](https://github.com/wtzeng1/caslin/blob/master/LICENSE)

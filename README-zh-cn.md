@@ -131,6 +131,12 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 检验当前的默认环境是否是包含于 env1, env2 中，如果**不包含**则返回 `true`，否则返回 `false`。
 
+## UI 集成
+
+像 Casl 一样，Caslin 也是一个没有外部依赖的纯 JS 库，在 Node 或者浏览器环境都可以使用。为了更好地在不同环境下使用，有一些环境相关的集成工具库可以使用。
+
+* [@caslin/react](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-react/README-zh-cn.md) 用于 [React](https://reactjs.org/)
+
 ## 许可协议
 
 [MIT License](https://github.com/wtzeng1/caslin/blob/master/LICENSE)
