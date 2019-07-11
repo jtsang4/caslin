@@ -17,6 +17,26 @@ export interface PrivateField {
   events: { [event: string]: Function[]; };
 }
 
+export namespace NFeature {
+  export type Env = InstanceType<typeof Feature>['env'];
+  export type Is = InstanceType<typeof Feature>['_is']
+  export type Not = InstanceType<typeof Feature>['_is']
+  export type In = InstanceType<typeof Feature>['_in']
+  export type NotIn = InstanceType<typeof Feature>['_in']
+
+  export type Update = InstanceType<typeof Feature>['update'];
+
+  export type SetEnv = InstanceType<typeof Feature>['setEnv'];
+  export type ReSetEnv = InstanceType<typeof Feature>['resetEnv'];
+
+  export type Can = InstanceType<typeof Feature>['can'];
+  export type CanNot = InstanceType<typeof Feature>['cannot'];
+  export type At = InstanceType<typeof Feature>['at'];
+
+  export type On = InstanceType<typeof Feature>['on'];
+  export type Emit = InstanceType<typeof Feature>['emit'];
+}
+
 export default class Feature {
   private [PRIVATE_FIELD]: PrivateField;
 
