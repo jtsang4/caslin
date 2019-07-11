@@ -1,6 +1,6 @@
 {
   "name": "@caslin/react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A util for making using Caslin with React easier.",
   "keywords": [
     "caslin",
@@ -43,7 +43,7 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "@caslin/feature": "^0.0.2",
+    "@caslin/feature": "^0.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
