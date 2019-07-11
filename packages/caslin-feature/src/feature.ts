@@ -32,6 +32,10 @@ export default class Feature {
     this.update(rules || []);
   }
 
+  get currentValue(): string {
+    return this[PRIVATE_FIELD].currentEnvironment;
+  }
+
   get rules() {
     return this[PRIVATE_FIELD].originalRules;
   }
@@ -46,6 +50,7 @@ export default class Feature {
       notIn: (envs: string[]) => {
         return !this._in.call(this, envs);
       },
+      value: this.currentValue,
     };
   }
 

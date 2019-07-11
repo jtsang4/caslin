@@ -189,9 +189,9 @@ describe('Feature', () => {
 
       const feature = new Feature(rules);
       feature.setEnv('test');
-      expect(feature[PRIVATE_FIELD].currentEnvironment).toBe('test');
+      expect(feature.env.value).toBe('test');
       feature.resetEnv();
-      expect(feature[PRIVATE_FIELD].currentEnvironment).toBeFalsy();
+      expect(feature.env.value).toBeFalsy();
     });
 
     it('should get correct checking result of environment after call setEnv()', function () {

@@ -113,6 +113,10 @@ Set the current default environment.
 
 Reset the current default environment.
 
+* feature.env.value
+
+The value of current default environment.
+
 * feature.env.is('env')
 
 Check that the current default environment is "env", return `true` if it **is**, or `false` otherwise.
