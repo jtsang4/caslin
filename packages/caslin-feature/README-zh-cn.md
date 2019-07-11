@@ -113,6 +113,10 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 取消设置当前的默认环境。
 
+* feature.env.value
+
+当前默认环境的值。
+
 * feature.env.is('env')
 
 检验当前的默认环境是否是 "env"，如果**是**则返回 `true`，否则返回 `false`。
