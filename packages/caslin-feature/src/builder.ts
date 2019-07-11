@@ -22,8 +22,16 @@ export class RuleBuilder {
   }
 }
 
-interface Definer {
-  (can: InstanceType<typeof FeatureBuilder>['can'], cannot: InstanceType<typeof FeatureBuilder>['cannot'], at: InstanceType<typeof FeatureBuilder>['at']): Promise<any> | void;
+export namespace NDefiner {
+  export type Can = InstanceType<typeof FeatureBuilder>['can'];
+
+  export type Cannot = InstanceType<typeof FeatureBuilder>['cannot'];
+
+  export type At = InstanceType<typeof FeatureBuilder>['at'];
+}
+
+export interface Definer {
+  (can: NDefiner.Can, cannot: NDefiner.Cannot, at: NDefiner.At): Promise<any> | void;
 }
 export class FeatureBuilder {
   static define<D extends Definer>(definer: D): ReturnType<D> extends Promise<any> ? Promise<Feature> : Feature {
