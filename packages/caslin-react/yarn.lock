@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@caslin/feature@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@caslin/feature/-/feature-0.0.1.tgz#3bd7f7e3610cbd5736eda7a163c70154374984bd"
-  integrity sha512-Ex+znkwg0jcVveMX5Ko23qBwUqLiAWeKwD/dxLrXG73L5mYx3k6JcpFK4IoHW5lYpVeO8BCK41/3ABpE9dPCtg==
+"@caslin/feature@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@caslin/feature/-/feature-0.0.4.tgz#2ae99924a12d72dec503a5e63d7850e1b53f1c60"
+  integrity sha512-5l6NOpRrZBEGB6bKW510fmpIAYEiu5N0hrDw68C8eMqvWEIR1OGeeauVzaLhHX0C7DamH5jFnJC2RMd/Zvv2Nw==
 
 "@types/cheerio@*":
   version "0.22.12"
@@ -15,17 +15,17 @@
     "@types/node" "*"
 
 "@types/enzyme@^3.10.1":
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.1.tgz#74a7f7345075a4c03e574661068d3f96a054f495"
-  integrity sha512-Jd2hvn3w/0rBH8qD2n+JLMq2GjmZoKTZc5TTg8q9cDnJ9jkR7gzPV+ZdipKwGkWpMRXKDm9kuc9UiUqsW5s20w==
+  version "3.10.3"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.3.tgz#02b6c5ac7d0472005944a652e79045e2f6c66804"
+  integrity sha512-f/Kcb84sZOSZiBPCkr4He9/cpuSLcKRyQaEE20Q30Prx0Dn6wcyMAWI0yofL6yvd9Ht9G7EVkQeRqK0n5w8ILw==
   dependencies:
     "@types/cheerio" "*"
     "@types/react" "*"
 
 "@types/node@*":
-  version "12.6.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.0.tgz#3ab4ef2d634d6e0f6d0c85edafdbbb8ae88c9609"
-  integrity sha512-dVeOVH/lhZ2Cki5Emh0aKeXUcWG1+EDTkqyzdgPe0ZjzgvBhzSFlogc6rm8uUd0I+XGK5fcp9DsMv5Wofe0/3w==
+  version "12.6.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.8.tgz#e469b4bf9d1c9832aee4907ba8a051494357c12c"
+  integrity sha512-aX+gFgA5GHcDi89KG5keey2zf0WfZk/HAQotEamsK2kbey+8yGKcson0hbK8E+v0NArlCJQCqMP161YhV6ZXLg==
 
 "@types/prop-types@*", "@types/prop-types@^15.7.1":
   version "15.7.1"
@@ -725,9 +725,9 @@ lodash.sortby@^4.7.0:
   integrity sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
 
 lodash@^4.15.0, lodash@^4.17.11:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"

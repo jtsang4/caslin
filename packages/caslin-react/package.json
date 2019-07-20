@@ -43,7 +43,7 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "@caslin/feature": "^0.0.3",
+    "@caslin/feature": "^0.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
