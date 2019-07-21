@@ -26,8 +26,8 @@
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js",
-    "build": "del -f dist && bili --config ../../bili.config.js",
-    "prepublish": "yarn test && NODE_ENV=productino && yarn build"
+    "build": "del dist --force && bili --config ../../bili.config.js",
+    "prepublish": "yarn test && cross-env NODE_ENV=productino && yarn build"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15"

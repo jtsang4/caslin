@@ -26,7 +26,8 @@
   },
   "scripts": {
     "test": "jest --config ./tools/jest.config.js",
-    "build": "del -f dist && bili --config ../../bili.config.js"
+    "build": "del dist --force && bili --config ../../bili.config.js",
+    "prepublish": "yarn test && cross-env NODE_ENV=productino && yarn build"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.1",
