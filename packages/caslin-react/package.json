@@ -27,7 +27,7 @@
   "scripts": {
     "test": "jest --config ./tools/jest.config.js",
     "build": "del dist --force && tsc --outDir ./dist",
-    "prepublish": "yarn test && cross-env NODE_ENV=productino && yarn build"
+    "prepublish": "yarn test && cross-env NODE_ENV=production && yarn build"
   },
   "devDependencies": {
     "@caslin/feature": "^0.0.4",
