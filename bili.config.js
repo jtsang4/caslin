@@ -5,7 +5,7 @@ module.exports = {
   output: {
     dir: './dist',
     format: ['cjs', 'esm'],
-    minify: true,
+    minify: false,
     moduleName: 'caslin'
   },
   plugins: {

@@ -22,7 +22,7 @@ export default class Can extends React.PureComponent<Props> {
   static propTypes = {
     action: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
     subject: PropTypes.string.isRequired,
-    feature: PropTypes.instanceOf(Feature).isRequired,
+    feature: PropTypes.object.isRequired,
     not: PropTypes.bool,
     passThrough: PropTypes.bool,
     children: PropTypes.any.isRequired,
