@@ -5,7 +5,7 @@ import Env, { Props as EnvProps } from './Env';
 
 export function createCanBoundTo(feature: Feature) {
   return class CanWithFeature extends React.PureComponent<Omit<CanProps, 'feature'>> {
-    static displayName: string = 'Can';
+    static displayName: string = 'CanWithFeature';
     render(): React.ReactNode {
       const {
         children,
@@ -18,7 +18,7 @@ export function createCanBoundTo(feature: Feature) {
 
 export function createEnvBoundTo(feature: Feature) {
   return class EnvWithFeature extends React.PureComponent<Omit<EnvProps, 'feature'>> {
-    static displayName: string = 'Env';
+    static displayName: string = 'EnvWithFeature';
     render(): React.ReactNode {
       const {
         children,
@@ -38,7 +38,7 @@ export function createCheckerBoundTo(feature: Feature) {
 
 export function createContextualCan(Consumer: React.Context<Feature>['Consumer']) {
   return class CanWithContextualFeature extends React.PureComponent<Omit<CanProps, 'feature'>> {
-    static displayName: string = 'Can';
+    static displayName: string = 'CanWithContextualFeature';
     render(): React.ReactNode {
       const {
         children,
@@ -52,8 +52,8 @@ export function createContextualCan(Consumer: React.Context<Feature>['Consumer']
 }
 
 export function createContextualEnv(Consumer: React.Context<Feature>['Consumer']) {
-  return class EnvWithFeature extends React.PureComponent<Omit<EnvProps, 'feature'>> {
-    static displayName: string = 'Env';
+  return class EnvWithContextualFeature extends React.PureComponent<Omit<EnvProps, 'feature'>> {
+    static displayName: string = 'EnvWithContextualFeature';
     render(): React.ReactNode {
       const {
         children,
