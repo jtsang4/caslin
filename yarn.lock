@@ -8238,6 +8238,11 @@ util.promisify@^1.0.0, util.promisify@~1.0.0:
     define-properties "^1.1.2"
     object.getownpropertydescriptors "^2.0.3"
 
+utility-types@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.npm.alibaba-inc.com/utility-types/download/utility-types-3.8.0.tgz#eaae1c2520c206b5623a4f07af38e3aa31dc2f06"
+  integrity sha1-6q4cJSDCBrViOk8HrzjjqjHcLwY=
+
 uuid@^3.0.1, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"

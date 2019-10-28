@@ -16,7 +16,7 @@ npm install @caslin/feature @caslin/react --save
 
 ### 1. &lt;Can> 组件
 
-组件的属性名与 [@caslin/feature](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md#feature) 中的相同，当特性检验结果为 true 时，将根据 `<Can>` 组件的 children 视情况进行渲染。
+组件的属性名与 [@caslin/feature](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md#feature) 中的相同，当特性检验结果为 true 时，将根据 `<Can>` 组件的 children 视情况进行渲染，你还能够传递一个 `fallback` render prop 来作为后备渲染元素。
 
 ```jsx
 import { Can } from '@caslin/react';
@@ -41,11 +41,16 @@ import feature from './feature';
 <Can env="featEnv1" action="create" subject="Article" feature={feature}>
   <button onClick={this.createArticle.bind(this)}>Create Article</button>
 </Can>
+
+// fallback property will be rendered if feature checking result is false
+<Can env="featEnv1" action="create" subject="Article" feature={feature} fallback={<div>You don't have permissioin to create Article.</div>}>
+  <button>Create Article</button>
+</Can>
 ```
 
 ### 2. &lt;Env> 组件
 
-一般使用这个组件的时候已经调用过 [feature.setEnv()](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md#feature) 设置好了当前的默认环境。
+一般使用这个组件的时候已经调用过 [feature.setEnv()](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature/README-zh-cn.md#feature) 设置好了当前的默认环境，同样地你还能够传递一个 `fallback` render prop 来作为后备渲染元素。
 
 ```jsx
 import { Env } from '@caslin/react';
@@ -70,6 +75,11 @@ import feature from './feature';
 // passThrough, pass match result as parameter
 <Env passThrough is="featEnv1" feature={feature}>
   {(match) => <div>{match ? 'is' : 'not'} env 1</div>}
+</Env>
+
+// fallback property will be rendered if feature checking result is false
+<Env is="featEnv1" feature={feature} fallback={<div>Current env is not featureEnv1.</div>}>
+  {() => <div>feature env 1</div>}
 </Env>
 ```
 

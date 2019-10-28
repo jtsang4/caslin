@@ -57,6 +57,15 @@ describe('Can', () => {
       expect(wrapper.isEmptyRender()).toBe(true);
     });
 
+    it('should render fallback element when check forbidden feature with Can', function () {
+      const wrapper = shallow((
+        <Can env="foo" action="create" subject="Post" feature={feature} fallback="fallback element">
+          <div>test</div>
+        </Can>
+      ));
+      expect(wrapper.text()).toBe('fallback element');
+    });
+
     it('should render element children when check forbidden feature with prop "not"', function () {
       const wrapper = shallow((
         <Can not env="foo" action="create" subject="Post" feature={feature}>
@@ -91,6 +100,15 @@ describe('Can', () => {
         </Can>
       ));
       expect(wrapper.isEmptyRender()).toBe(true);
+    });
+
+    it('should render fallback element when check allowed feature with prop "not"', function () {
+      const wrapper = shallow((
+        <Can not env="foo" action="read" subject="Post" feature={feature} fallback="fallback element">
+          <div>test</div>
+        </Can>
+      ));
+      expect(wrapper.text()).toBe('fallback element');
     });
   });
 

@@ -15,6 +15,7 @@ export interface Props {
   not?: boolean;
   passThrough?: boolean;
   env?: string;
+  fallback?: React.ReactNode;
   children: React.ReactNode | RenderChildren ;
 }
 
@@ -25,6 +26,7 @@ export default class Can extends React.PureComponent<Props> {
     feature: PropTypes.object.isRequired,
     not: PropTypes.bool,
     passThrough: PropTypes.bool,
+    fallback: PropTypes.any,
     children: PropTypes.any.isRequired,
   };
 
@@ -73,7 +75,7 @@ export default class Can extends React.PureComponent<Props> {
     if (feature) {
       this.unsubscribe = feature.on('updated', () => this.forceUpdate());
     } else {
-      throw new TypeError('@caslin/react: "feature" prop must be provided.')
+      throw new TypeError('@caslin/react: "feature" prop must be provided to <Can>.')
     }
   }
 
@@ -89,13 +91,13 @@ export default class Can extends React.PureComponent<Props> {
   }
 
   render(): React.ReactNode {
-    const { passThrough } = this.props;
+    const { passThrough, fallback = null } = this.props;
     const isAllowed = this.isAllowed();
 
     if (passThrough) {
       return this.renderPassThrough();
     }
 
-    return isAllowed ? this.renderAllow() : null;
+    return isAllowed ? this.renderAllow() : fallback;
   }
 }

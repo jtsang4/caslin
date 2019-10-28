@@ -1,6 +1,6 @@
 {
   "name": "@caslin/react",
-  "version": "0.1.1",
+  "version": "0.9.1",
   "description": "A util for making using Caslin with React easier.",
   "keywords": [
     "caslin",

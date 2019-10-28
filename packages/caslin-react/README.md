@@ -16,7 +16,7 @@ Assume that a `feature.js` file already exists, which exposes the feature instan
 
 ### 1. &lt;Can> component
 
-The attributes is the same as calling style of [@caslin/feature](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature#feature). When the checking result is true, the children of the `<Can>` component is rendered.
+The attributes is the same as calling style of [@caslin/feature](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature#feature). When the checking result is true, the children of the `<Can>` component is rendered, you could pass a `fallback` render prop as fallback element.
 
 ```jsx
 import { Can } from '@caslin/react';
@@ -41,11 +41,16 @@ import feature from './feature';
 <Can env="featEnv1" action="create" subject="Article" feature={feature}>
   <button onClick={this.createArticle.bind(this)}>Create Article</button>
 </Can>
+
+// fallback property will be rendered if feature checking result is false
+<Can env="featEnv1" action="create" subject="Article" feature={feature} fallback={<div>You don't have permissioin to create Article.</div>}>
+  <button>Create Article</button>
+</Can>
 ```
 
 ### 2. &lt;Env> component
 
-In general case, when this component is used, the [feature.setEnv()](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature#feature) is called and the current default environment is set.
+In general case, when this component is used, the [feature.setEnv()](https://github.com/wtzeng1/caslin/blob/master/packages/caslin-feature#feature) is called and the current default environment is set, you could also pass a `fallback` render prop as fallback element.
 
 ```jsx
 import { Env } from '@caslin/react';
@@ -70,6 +75,11 @@ import feature from './feature';
 // passThrough, pass match result as parameter
 <Env passThrough is="featEnv1" feature={feature}>
   {(match) => <div>{match ? 'is' : 'not'} env 1</div>}
+</Env>
+
+// fallback property will be rendered if feature checking result is false
+<Env is="featEnv1" feature={feature} fallback={<div>Current env is not featureEnv1.</div>}>
+  {() => <div>feature env 1</div>}
 </Env>
 ```
 

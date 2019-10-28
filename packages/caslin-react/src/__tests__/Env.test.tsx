@@ -23,6 +23,17 @@ describe('Env', () => {
     feature.resetEnv();
   });
 
+  it('should render fallback element when not match env', function () {
+    feature.setEnv('foo');
+    const wrapper = shallow((
+      <Env feature={feature} is="bar" fallback="fallback element">
+        <div>test</div>
+      </Env>
+    ));
+    expect(wrapper.text()).toBe('fallback element');
+    feature.resetEnv();
+  });
+
   describe('Is', () => {
     beforeEach(() => {
       feature.setEnv('foo');
