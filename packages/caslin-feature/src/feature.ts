@@ -1,3 +1,4 @@
+import { ValuesType } from 'utility-types';
 import { Rule } from './builder';
 import { ALL_ENV, PRIVATE_FIELD } from './constants';
 
@@ -71,6 +72,10 @@ export default class Feature {
         return !this._in.call(this, envs);
       },
       value: this.currentValue,
+      matchPick: <T extends object>(obj: T): ValuesType<T> | undefined => {
+        const currentEnv = this[PRIVATE_FIELD].currentEnvironment;
+        return (obj as any)[currentEnv];
+      },
     };
   }
 

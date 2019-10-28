@@ -209,6 +209,18 @@ describe('Feature', () => {
       expect(feature.env.notIn(['foo', 'bar'])).toBe(true);
       expect(feature.env.notIn(['test', 'bar'])).toBe(false);
     });
+
+    it('should get correct picking result for current environment after call matchPick()', function () {
+      const rules = [
+        { actions: ['read'], subject: 'Post', env: 'all' },
+        { actions: ['delete'], subject: 'Post', env: 'all', inverted: true },
+      ];
+
+      const feature = new Feature(rules);
+      feature.setEnv('foo');
+      expect(feature.env.matchPick({ foo: 'foo', bar: 'bar' })).toBe('foo');
+      expect(feature.env.matchPick({ bar: 'bar' })).toBe(undefined);
+    });
   });
 
   describe('Events', () => {

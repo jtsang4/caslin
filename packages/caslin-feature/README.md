@@ -133,6 +133,10 @@ Check that the current default environment is included in env1, env2 and return 
 
 Verify that the current default environment is included in env1, env2 and return `true` if **it is not**, otherwise return `false`.
 
+* feature.env.matchPick({ env1: 'value1', env2: 'value2' })
+
+Pick the key-value pair whose key matches current environment, return the value of mathced key-value pair.
+
 * feature.rules
 
 In general case, you don't need to use it. It is underlying used by the framework and represents the basic definition of the "feature". The type is `Rule[]`.

@@ -133,6 +133,10 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 检验当前的默认环境是否是包含于 env1, env2 中，如果**不包含**则返回 `true`，否则返回 `false`。
 
+* feature.env.matchPick({ env1: 'value1', env2: 'value2' })
+
+选择匹配当前环境的"键值对"，返回匹配键值对的 value。
+
 * feature.rules
 
 一般情况不需要使用，框架内部用于表示特性的基本定义。类型为 `Rule[]`。
