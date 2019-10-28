@@ -135,6 +135,10 @@ feature.env.notIn(['featEnv2', 'featEnv3']); // true，current environment isn't
 
 检验当前的默认环境是否是包含于 env1, env2 中，如果**不包含**则返回 `true`，否则返回 `false`。
 
+* feature.env.matchPick({ env1: 'value1', env2: 'value2' })
+
+选择匹配当前环境的"键值对"，返回匹配键值对的 value。
+
 ## UI 集成
 
 像 Casl 一样，Caslin 也是一个没有外部依赖的纯 JS 库，在 Node 或者浏览器环境都可以使用。为了更好地在不同环境下使用，有一些环境相关的集成工具库可以使用。
