@@ -60,13 +60,13 @@ export default class Can extends React.PureComponent<Props> {
     } = this.props;
     if (not) {
       if (tag) {
-        return env ? feature.at(env).cannot(action, UndefinedSubject) : feature.cannot(action, UndefinedSubject);
+        return env ? feature.at(env).cannot(tag, UndefinedSubject) : feature.cannot(tag, UndefinedSubject);
       } else {
         return env ? feature.at(env).cannot(action, subject as string) : feature.cannot(action, subject as string);
       }
     } else {
       if (tag) {
-        return env ? feature.at(env).can(action, UndefinedSubject) : feature.can(action, UndefinedSubject);
+        return env ? feature.at(env).can(tag, UndefinedSubject) : feature.can(tag, UndefinedSubject);
       } else {
         return env ? feature.at(env).can(action, subject as string) : feature.can(action, subject as string);
       }

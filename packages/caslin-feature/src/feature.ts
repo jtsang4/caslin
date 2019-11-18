@@ -180,29 +180,20 @@ export default class Feature {
     const { currentEnvironment } = this[PRIVATE_FIELD];
     const wrappedActions = ([] as string[]).concat(actions);
     this._checkActions(wrappedActions);
-
-    if (!subject) {
-      if (typeof actions !== 'string') {
-        throw new TypeError('Caslin: expect action to be a string.');
-      }
-      return this._can(wrappedActions, UndefinedSubject, currentEnvironment || ALL_ENV).allowed;
-    } else {
-      return this._can(wrappedActions, subject, currentEnvironment || ALL_ENV).allowed;
-    }
-  }
+    return this._can(wrappedActions, subject || UndefinedSubject, currentEnvironment || ALL_ENV).allowed;  }
 
   cannot(actions: string | string[], subject?: string) {
     return !this.can(actions, subject);
   }
 
   at(env: string) {
-    const can = (actions: string | string[], subject: string) => {
+    const can = (actions: string | string[], subject?: string) => {
       const wrappedActions = ([] as string[]).concat(actions);
       this._checkActions(wrappedActions);
-      const result = this._can(wrappedActions, subject, env);
-      return result.allowed || (!result.forbidden && this._can(wrappedActions, subject, ALL_ENV).allowed);
+      const result = this._can(wrappedActions, subject || UndefinedSubject, env);
+      return result.allowed || (!result.forbidden && this._can(wrappedActions, subject || UndefinedSubject, ALL_ENV).allowed);
     };
-    const cannot = (actions: string | string[], subject: string) => {
+    const cannot = (actions: string | string[], subject?: string) => {
       return !can(actions, subject);
     };
     return { can, cannot };

@@ -62,11 +62,11 @@ export class FeatureBuilder {
   }
 
   at(env: string) {
-    const can = (actions: string | string[], subject: string) => {
+    const can = (actions: string | string[], subject?: string) => {
       this.checkActionsParam(actions);
-      return this._can(([] as string[]).concat(actions), subject, env);
+      return this._can(([] as string[]).concat(actions), subject || UndefinedSubject, env);
     };
-    const cannot = (actions: string | string[], subject: string) => {
+    const cannot = (actions: string | string[], subject?: string) => {
       const ruleBuilder: RuleBuilder = can(actions, subject);
       ruleBuilder.rule.inverted = true;
       return ruleBuilder;
@@ -76,15 +76,7 @@ export class FeatureBuilder {
 
   can(actions: string | string[], subject?: string): RuleBuilder {
     this.checkActionsParam(actions);
-    if (!subject) {
-      if (typeof actions !== 'string') {
-        throw new TypeError('Caslin: expect action to be a string.');
-      }
-      return this._can(([] as string[]).concat(actions), UndefinedSubject, ALL_ENV);
-    } else {
-      return this._can(([] as string[]).concat(actions), subject, ALL_ENV);
-    }
-  }
+    return this._can(([] as string[]).concat(actions), subject || UndefinedSubject, ALL_ENV);  }
 
   cannot(actions: string | string[], subject?: string): RuleBuilder {
     const ruleBuilder: RuleBuilder = this.can(actions, subject);

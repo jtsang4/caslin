@@ -110,14 +110,6 @@ describe('Builder', function () {
       expect(feature.can('DeletePost')).toBe(false);
       expect(feature.cannot('DeletePost')).toBe(true);
     });
-
-    it('should throw TypeError when omit subject but pass actions array', function () {
-      expect(() => {
-        FeatureBuilder.define((can) => {
-          can(['ReadPost', 'DeletePost']);
-        });
-      }).toThrow();
-    });
   });
 });
 

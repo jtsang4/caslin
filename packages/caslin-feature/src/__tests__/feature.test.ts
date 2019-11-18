@@ -178,20 +178,6 @@ describe('Feature', () => {
       const feature = new Feature(rules);
       expect(feature.at('test').can(['read', 'delete'], 'Post')).toBe(true);
     });
-
-    it('should throw TypeError when omit subject but pass actions array', function () {
-      const rules = [
-        { actions: ['read'], subject: 'Post', env: 'all', inverted: true },
-        { actions: ['delete'], subject: 'Post', env: 'all', inverted: true },
-        { actions: ['read'], subject: 'Post', env: 'test' },
-        { actions: ['delete'], subject: 'Post', env: 'test' },
-      ];
-
-      const feature = new Feature(rules);
-      expect(() => {
-        feature.can(['ReadPost', 'DeletePost']);
-      }).toThrow();
-    });
   });
 
   describe('env', () => {
