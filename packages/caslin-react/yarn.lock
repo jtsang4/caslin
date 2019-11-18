@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@caslin/feature@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@caslin/feature/-/feature-0.0.4.tgz#2ae99924a12d72dec503a5e63d7850e1b53f1c60"
-  integrity sha512-5l6NOpRrZBEGB6bKW510fmpIAYEiu5N0hrDw68C8eMqvWEIR1OGeeauVzaLhHX0C7DamH5jFnJC2RMd/Zvv2Nw==
+"@caslin/feature@^0.9.2":
+  version "0.9.2"
+  resolved "https://registry.npm.alibaba-inc.com/@caslin/feature/download/@caslin/feature-0.9.2.tgz#0196923d0e7d861125a74bafc07d1053060b282d"
+  integrity sha1-AZaSPQ59hhElp0uvwH0QUwYLKC0=
 
 "@types/cheerio@*":
   version "0.22.12"

@@ -101,6 +101,23 @@ describe('Builder', function () {
       expect(feature.can('delete', 'Post')).toBe(false);
       expect(feature.cannot('delete', 'Post')).toBe(true);
     });
+
+    it('should support single action when omit subject', function () {
+      const feature = FeatureBuilder.define((can) => {
+        can('ReadPost');
+      }) as Feature;
+      expect(feature.can('ReadPost')).toBe(true);
+      expect(feature.can('DeletePost')).toBe(false);
+      expect(feature.cannot('DeletePost')).toBe(true);
+    });
+
+    it('should throw TypeError when omit subject but pass actions array', function () {
+      expect(() => {
+        FeatureBuilder.define((can) => {
+          can(['ReadPost', 'DeletePost']);
+        });
+      }).toThrow();
+    });
   });
 });
 

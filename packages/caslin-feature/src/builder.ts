@@ -1,5 +1,5 @@
 import Feature from './feature';
-import { ALL_ENV } from './constants';
+import { UndefinedSubject, ALL_ENV } from './constants';
 import { isStringOrNonEmptyArray } from './util';
 
 export interface Rule {
@@ -74,12 +74,19 @@ export class FeatureBuilder {
     return { can, cannot };
   }
 
-  can(actions: string | string[], subject: string): RuleBuilder {
+  can(actions: string | string[], subject?: string): RuleBuilder {
     this.checkActionsParam(actions);
-    return this._can(([] as string[]).concat(actions), subject, ALL_ENV);
+    if (!subject) {
+      if (typeof actions !== 'string') {
+        throw new TypeError('Caslin: expect action to be a string.');
+      }
+      return this._can(([] as string[]).concat(actions), UndefinedSubject, ALL_ENV);
+    } else {
+      return this._can(([] as string[]).concat(actions), subject, ALL_ENV);
+    }
   }
 
-  cannot(actions: string | string[], subject: string): RuleBuilder {
+  cannot(actions: string | string[], subject?: string): RuleBuilder {
     const ruleBuilder: RuleBuilder = this.can(actions, subject);
     ruleBuilder.rule.inverted = true;
     return ruleBuilder;

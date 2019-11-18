@@ -1,6 +1,6 @@
 import { ValuesType } from 'utility-types';
 import { Rule } from './builder';
-import { ALL_ENV, PRIVATE_FIELD } from './constants';
+import { ALL_ENV, PRIVATE_FIELD, UndefinedSubject } from './constants';
 
 export interface PrivateField {
   originalRules: Rule[] | Readonly<Rule[]>;
@@ -176,14 +176,22 @@ export default class Feature {
     return this;
   }
 
-  can(actions: string | string[], subject: string) {
+  can(actions: string | string[], subject?: string) {
     const { currentEnvironment } = this[PRIVATE_FIELD];
     const wrappedActions = ([] as string[]).concat(actions);
     this._checkActions(wrappedActions);
-    return this._can(wrappedActions, subject, currentEnvironment || ALL_ENV).allowed;
+
+    if (!subject) {
+      if (typeof actions !== 'string') {
+        throw new TypeError('Caslin: expect action to be a string.');
+      }
+      return this._can(wrappedActions, UndefinedSubject, currentEnvironment || ALL_ENV).allowed;
+    } else {
+      return this._can(wrappedActions, subject, currentEnvironment || ALL_ENV).allowed;
+    }
   }
 
-  cannot(actions: string | string[], subject: string) {
+  cannot(actions: string | string[], subject?: string) {
     return !this.can(actions, subject);
   }
 

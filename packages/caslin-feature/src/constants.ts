@@ -1,4 +1,5 @@
 // Builder
+export const UndefinedSubject = '__UndefinedSubject__';
 export const ALL_ENV = 'all';
 
 // Feature

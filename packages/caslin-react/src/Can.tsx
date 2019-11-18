@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Feature } from '@caslin/feature';
+import { Feature, UndefinedSubject } from '@caslin/feature';
 
 export interface RenderChildren {
   (): React.ReactNode;
@@ -10,11 +10,12 @@ export interface RenderChildren {
 
 export interface Props {
   action: string | string[];
-  subject: string;
+  subject?: string;
   feature: Feature;
   not?: boolean;
   passThrough?: boolean;
   env?: string;
+  tag?: string;
   fallback?: React.ReactNode;
   children: React.ReactNode | RenderChildren ;
 }
@@ -22,7 +23,8 @@ export interface Props {
 export default class Can extends React.PureComponent<Props> {
   static propTypes = {
     action: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
-    subject: PropTypes.string.isRequired,
+    subject: PropTypes.string,
+    tag: PropTypes.string,
     feature: PropTypes.object.isRequired,
     not: PropTypes.bool,
     passThrough: PropTypes.bool,
@@ -52,13 +54,22 @@ export default class Can extends React.PureComponent<Props> {
       feature,
       action,
       subject,
+      tag,
       env,
       not,
     } = this.props;
     if (not) {
-      return env ? feature.at(env).cannot(action, subject) : feature.cannot(action, subject);
+      if (tag) {
+        return env ? feature.at(env).cannot(action, UndefinedSubject) : feature.cannot(action, UndefinedSubject);
+      } else {
+        return env ? feature.at(env).cannot(action, subject as string) : feature.cannot(action, subject as string);
+      }
     } else {
-      return env ? feature.at(env).can(action, subject) : feature.can(action, subject);
+      if (tag) {
+        return env ? feature.at(env).can(action, UndefinedSubject) : feature.can(action, UndefinedSubject);
+      } else {
+        return env ? feature.at(env).can(action, subject as string) : feature.can(action, subject as string);
+      }
     }
   }
 
